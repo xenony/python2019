@@ -1,0 +1,42 @@
+{
+    "PERSONS": {
+        "PERSON": [
+            {
+                "FIRST_NAME": "Ivan",
+                "LAST_NAME": "Ivanov",
+                "YEAR_OF_BIRTH": "1991",
+                "MONTH_OF_BIRTH": "Jan",
+                "DAY_OF_BIRTH": "33",
+                "COMPANY": "Huhhle",
+                "PROJECT": "ABC",
+                "ROLE": "TL",
+                "ROOM": "11",
+                "HOBBY": "Gamer"
+            },
+            {
+                "FIRST_NAME": "Ivan",
+                "LAST_NAME": "Ivanov",
+                "YEAR_OF_BIRTH": "YOUR_YYYY",
+                "MONTH_OF_BIRTH": "YOUR_Month",
+                "DAY_OF_BIRTH": "33",
+                "COMPANY": "YOUR_COMPANY",
+                "PROJECT": "ABC",
+                "ROLE": "TL",
+                "ROOM": "11",
+                "HOBBY": "Gamer"
+            },
+            {
+                "FIRST_NAME": "Ivan",
+                "LAST_NAME": "Ivanov",
+                "YEAR_OF_BIRTH": "2000",
+                "MONTH_OF_BIRTH": "May",
+                "DAY_OF_BIRTH": "33",
+                "COMPANY": "TEST_COMPANY",
+                "PROJECT": "ABC",
+                "ROLE": "TL",
+                "ROOM": "11",
+                "HOBBY": "Gamer"
+            }
+        ]
+    }
+}
