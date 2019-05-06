@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-import time
+import allure
 
 from pageobjects.base_page import BasePage
 
@@ -21,9 +21,11 @@ issues_in_list_css = ".issue-list a"
 
 class IssuePage(BasePage):
 
+    @allure.step
     def get_title(self):
         return self.driver.title
 
+    @allure.step
     def create_issue(self, summary=None, priority=None, assignee=None, new_issue=True):
         if new_issue:
             self.click_elem(create_issue_button_id, By.ID)
@@ -34,6 +36,7 @@ class IssuePage(BasePage):
             return False
         return True
 
+    @allure.step
     def update_issue(self, summary=None, priority=None, assignee=None):
         self.type_to_elem(summary_field_id, By.ID, summary, True)
         self.type_to_elem(priority_field_css, By.CSS_SELECTOR, priority, True, True)
@@ -42,11 +45,13 @@ class IssuePage(BasePage):
             return False
         return True
 
+    @allure.step
     def open_issue_in_list(self, summary):
         self.click_elem('.issue-list [title="%s"] a' % summary, By.CSS_SELECTOR)
         self.wait_for_element(edit_issue_button_id, By.ID)
         self.click_elem(edit_issue_button_id, By.ID)
 
+    @allure.step
     def get_issue_fields(self, close_edit=True):
         fields_data_list = []
         fields_data_list.append(self.get_field_data(summary_field_id, By.ID))
@@ -55,6 +60,7 @@ class IssuePage(BasePage):
             self.click_elem(cancel_issue_button_css, By.CSS_SELECTOR)
         return fields_data_list
 
+    @allure.step
     def search_issues(self, summary):
         self.type_to_elem(search_field_id, By.ID, summary, True, True)
         self.wait_for_element(edit_issue_button_id, By.ID)
@@ -63,6 +69,7 @@ class IssuePage(BasePage):
         else:
             return 0
 
+    @allure.step
     def search_nonexistent_issues(self, summary):
         self.type_to_elem(search_field_id, By.ID, summary, True, True)
         if self.driver.find_elements(By.CSS_SELECTOR, issues_list_css):
