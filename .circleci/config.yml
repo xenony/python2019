@@ -16,6 +16,8 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+            wget https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/2.11.0/allure-commandline-2.11.0.zip
+            unzip allure-commandline-2.11.0.zip
       - save_cache:
           paths:
             - ./venv
@@ -24,7 +26,14 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            pytest -v
+            chmod -R 777 ./allure-2.11.0/bin/
+            pytest --alluredir=./allure-results
+      - run:
+          name: run report
+          when: always
+          command: |
+            ./allure-2.11.0/bin/allure generate -c
       - store_artifacts:
-          path: test-reports
-          destination: test-reports
+          path: allure-report
+          destination: allure-report
+          when: always

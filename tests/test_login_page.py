@@ -1,6 +1,8 @@
 from pageobjects.login_page import LoginPage
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+import allure
+import pytest
 
 creds = "OlegAverkin"
 fake_creds = "fake_user"
@@ -15,20 +17,32 @@ class TestLogin:
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         self.login_page = LoginPage(self.driver)
 
+    @pytest.mark.ui
+    @allure.tag('ui')
+    @allure.title("Check title")
     def test_check_title(self):
         self.login_page.open(auth_url)
         assert self.login_page.get_title() == login_title
 
+    @pytest.mark.ui
+    @allure.tag('ui')
+    @allure.title("Login with wrong password")
     def test_login_with_wrong_password(self):
         self.login_page.open(auth_url)
         self.login_page.login_to_jira(creds, fake_creds)
         assert self.login_page.get_title() == login_title
 
+    @pytest.mark.ui
+    @allure.tag('ui')
+    @allure.title("Login with wrong username")
     def test_login_with_wrong_username(self):
         self.login_page.open(auth_url)
         self.login_page.login_to_jira(creds, fake_creds)
         assert self.login_page.get_title() == login_title
 
+    @pytest.mark.ui
+    @allure.tag('ui')
+    @allure.title("Login with correct credentials")
     def test_login_with_correct_credentials(self):
         self.login_page.open(auth_url)
         self.login_page.login_to_jira(creds, creds)
