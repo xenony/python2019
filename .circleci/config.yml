@@ -27,7 +27,7 @@ jobs:
           command: |
             . venv/bin/activate
             chmod -R 777 ./allure-2.11.0/bin/
-            pytest --alluredir=./allure-results
+            pytest --alluredir=./allure-results tests/test_jira_api.py
       - run:
           name: run report
           when: always
