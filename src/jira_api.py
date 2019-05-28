@@ -17,6 +17,7 @@ headers = {
 
 created_issues = []
 j = JSONFixture()
+times_rerun = []
 
 
 class JiraApi:
@@ -60,3 +61,11 @@ class JiraApi:
             result = JiraApi.delete_issue(self, issue_id)
             response_codes_list.append(result.status_code)
         return response_codes_list
+
+    @allure.step
+    def rerun(self):
+        if len(times_rerun) == 0:
+            times_rerun.append(1)
+            return 1
+        else:
+            return 2
