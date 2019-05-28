@@ -22,6 +22,7 @@ class TestSuite:
     def test_post_issue(self):
         response = api.post_issue("OA API Issue001", "OlegAverkin", "Low")
         assert response.status_code == 201
+        assert "WEBINAR" in response.json().get('key')
 
     @allure.tag('api')
     @allure.title("Update issue")
@@ -31,17 +32,7 @@ class TestSuite:
         issue_id = response.json().get('id')
         response_update = api.update_issue(issue_id, "OA API Issue002 Updated", "OlegAverkin", "Low")
         assert response_update.status_code == 204
-
-    @allure.tag('api')
-    @allure.title("Post multiple issues")
-    @pytest.mark.api
-    @pytest.mark.parametrize("response,expected", [
-        (api.post_issue("OA API Issue003", "OlegAverkin", "Low"), 201),
-        (api.post_issue("OA API Issue004", "OlegAverkin", "Low"), 201),
-        (api.post_issue("OA API Issue005", "OlegAverkin", "Low"), 201),
-        (api.post_issue("OA API Issue006", "OlegAverkin", "Low"), 201)])
-    def test_post_issues(self, response, expected):
-        assert response.status_code == expected
+        api.delete_all_issues()
 
     @allure.tag('api')
     @allure.title("Missing required fields")
@@ -63,7 +54,7 @@ class TestSuite:
     @allure.title("Test search issue")
     @pytest.mark.api
     def test_search_1_issue(self):
-        response = api.search_issue("Issue001")
+        response = api.search_issue("OAsearch1")
         assert response.status_code == 200
         assert response.json().get('total') == 1
 
@@ -71,9 +62,9 @@ class TestSuite:
     @allure.title("Test five issue")
     @pytest.mark.api
     def test_search_5_issues(self):
-        response = api.search_issue("OA")
+        response = api.search_issue("OAsearch5")
         assert response.status_code == 200
-        assert response.json().get('total') == 6
+        assert response.json().get('total') == 5
 
     @allure.tag('api')
     @allure.title("Test search unknown issue")
@@ -84,8 +75,7 @@ class TestSuite:
         assert response.json().get('total') == 0
 
     @allure.tag('api')
-    @allure.title("Delete all issues")
+    @allure.title("Random test for re-run")
     @pytest.mark.api
-    def test_delete_all_issues(self):
-        response = api.delete_all_issues()
-        assert len(response) == 6
+    def test_random(self):
+        assert api.rerun() == 2

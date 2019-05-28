@@ -6,33 +6,20 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            - v1-dependencies-
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements.txt
-            wget https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/2.11.0/allure-commandline-2.11.0.zip
-            unzip allure-commandline-2.11.0.zip
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+            sudo pip install -r requirements.txt
+            sudo npm install -g allure-commandline --save-dev
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
-            chmod -R 777 ./allure-2.11.0/bin/
-            pytest --alluredir=./allure-results tests/test_jira_api.py
+            pytest -n 3 --dist=loadscope -v --reruns 2 --alluredir  ./allure-results tests/test_jira_api.py
       - run:
           name: run report
           when: always
           command: |
-            ./allure-2.11.0/bin/allure generate -c
+            allure generate -c
       - store_artifacts:
           path: allure-report
           destination: allure-report

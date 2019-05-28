@@ -1,5 +1,6 @@
-allure-pytest==2.6.2
-allure-python-commons==2.6.2
+allure-pytest==2.5.1
+allure-python-commons==2.5.1
+apipkg==1.5
 appdirs==1.4.0
 astroid==1.4.9
 atomicwrites==1.3.0
@@ -11,6 +12,7 @@ coverage==4.3.4
 coveralls==1.1
 crayons==0.2.0
 docopt==0.6.2
+execnet==1.6.0
 fibonacci==1.0.0
 isort==4.2.5
 lazy-object-proxy==1.2.2
@@ -22,12 +24,16 @@ packaging==16.8
 pluggy==0.9.0
 py==1.8.0
 pyparsing==2.1.10
-pytest==4.4.0
+pytest==3.7.2
 pytest-base-url==1.4.1
-pytest-html==1.20.0
-pytest-metadata==1.8.0
-pytest-selenium==1.16.0
+pytest-forked==0.2
+pytest-html==1.19.0
+pytest-metadata==1.7.0
+pytest-parallel==0.0.2
+pytest-rerunfailures==4.1
+pytest-selenium==1.14.0
 pytest-variables==1.7.1
+pytest-xdist==1.23.0
 requests==2.13.0
 restflow==0.8b0
 selenium==3.141.0
@@ -36,4 +42,3 @@ urllib3==1.24.2
 webdriver-manager==1.7
 wrapt==1.10.8
 xmltodict==0.12.0
-pytest==4.4.0
