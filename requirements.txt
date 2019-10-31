@@ -34,7 +34,7 @@ pytest-rerunfailures==4.1
 pytest-selenium==1.14.0
 pytest-variables==1.7.1
 pytest-xdist==1.23.0
-requests==2.13.0
+requests==2.20.0
 restflow==0.8b0
 selenium==3.141.0
 six==1.10.0
