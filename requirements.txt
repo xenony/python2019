@@ -38,7 +38,7 @@ requests==2.13.0
 restflow==0.8b0
 selenium==3.141.0
 six==1.10.0
-urllib3==1.24.2
+urllib3==1.26.5
 webdriver-manager==1.7
 wrapt==1.10.8
 xmltodict==0.12.0
